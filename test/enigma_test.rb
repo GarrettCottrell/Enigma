@@ -38,4 +38,16 @@ class EnigmaTest <Minitest::Test
 
     assert_equal 4, enigma.assign_characters_to_array_values.length
   end
+
+  def test_get_current_date
+    enigma = Enigma.new
+
+    assert_equal "091820", enigma.get_current_date
+  end
+
+  def test_create_offsets
+    enigma = Enigma.new
+
+    assert_equal 8430912400, enigma.create_offsets
+  end
 end

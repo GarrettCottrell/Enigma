@@ -1,3 +1,5 @@
+require 'date'
+
 class Enigma
   attr_reader :input
   def initialize
@@ -7,6 +9,8 @@ class Enigma
   def create_alphabet
     ("a".."z").to_a << " "
   end
+
+  ######The following 4 methods all help to ultimately create "The Keys"######
   def create_key
     4.times.map{rand(4)}.join
   end
@@ -30,5 +34,15 @@ class Enigma
     key_hash["C"] = integer_array[2..3]
     key_hash["D"] = integer_array[3..4]
     key_hash
+  end
+  ######The above code created "The Keys"######
+
+  def get_current_date
+  Date.today.strftime("%m%d%y")
+  end
+
+  def create_offsets
+    current_date_integer = get_current_date.to_i
+    squared_date = (current_date_integer ** 2)
   end
 end
