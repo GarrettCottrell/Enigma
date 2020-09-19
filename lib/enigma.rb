@@ -6,11 +6,12 @@ class Enigma
     @input = "garrett cottrell"
   end
 
-  def create_alphabet
-    ("a".."z").to_a << " "
+  def create_character_set
+ ("a".."z").to_a << " "
   end
 
-  ###### The following 4 methods create "The Keys" ######
+  ###### The below 4 methods create "The Keys" ######
+
   def create_key
     4.times.map{rand(4)}.join
   end
@@ -61,8 +62,21 @@ class Enigma
   end
 
   ###### The above code creates "The Offsets"
+
+  ###### The below code creates "The Shift"
+
   def create_shift
-    shift = create_keys.merge!(create_offset) {|key, value1, value2|}
-    (value1 + value2)}
+    shift = create_keys.merge!(create_offset) {|key, value1, value2|
+    ((value1.join.to_i) + value2)}
+  end
+
+  ###### The above code creates "The Shift"######
+
+  def input_array
+  @input.split("")
+
+  def rotate
+    new_array = [["A"], ["B"], ["C"], ["D"]]
+    input_array
   end
 end

@@ -9,10 +9,10 @@ class EnigmaTest <Minitest::Test
     assert_equal "garrett cottrell", enigma.input
   end
 
-  def test_create_alphabet
+  def test_create_character_set
     enigma = Enigma.new
     expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
-    assert_equal expected, enigma.create_alphabet
+    assert_equal expected, enigma.create_character_set
   end
 
   def test_create_key
@@ -42,24 +42,37 @@ class EnigmaTest <Minitest::Test
   def test_get_current_date
     enigma = Enigma.new
 
-    assert_equal "091820", enigma.get_current_date
+    assert_equal "091920", enigma.get_current_date
   end
 
   def test_create_offset_integer_arrray
     enigma = Enigma.new
 
-    assert_equal [2,4,0,0], enigma.create_offset_integer_array
+    assert_equal [6,4,0,0], enigma.create_offset_integer_array
   end
 
   def test_create_offset
     enigma = Enigma.new
 
-    assert_equal ({"A"=>2, "B"=>4, "C"=>0, "D"=>0}), enigma.create_offset
+    assert_equal ({"A"=>6, "B"=>4, "C"=>0, "D"=>0}), enigma.create_offset
   end
 
   def test_create_shift
     enigma = Enigma.new
 
-    assert_equal ({"A"=>3, "B"=>27, "C"=>73, "D"=>20}), enigma.create_shift
+    assert_equal 4, enigma.create_shift.length
+  end
+
+  def test_rotate
+
+    enigma = Enigma.new
+
+    assert_equal [], enigma.rotate
+  end
+
+  def test_input_array
+    enigma = Enigma.new
+
+    assert_equal ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"], enigma.input_array
   end
 end
