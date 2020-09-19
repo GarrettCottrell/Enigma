@@ -64,7 +64,7 @@ class EnigmaTest <Minitest::Test
   end
 
   def test_rotate
-
+skip
     enigma = Enigma.new
 
     assert_equal [], enigma.rotate
@@ -74,5 +74,14 @@ class EnigmaTest <Minitest::Test
     enigma = Enigma.new
 
     assert_equal ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"], enigma.input_array
+  end
+
+  def test_a_shift
+
+    enigma = Enigma.new
+    enigma.create_shift
+
+    assert_equal [], enigma.a_shift
+
   end
 end

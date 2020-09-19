@@ -1,9 +1,10 @@
 require 'date'
 
 class Enigma
-  attr_reader :input
+  attr_reader :input, :shift
   def initialize
     @input = "garrett cottrell"
+    @shift = {}
   end
 
   def create_character_set
@@ -66,17 +67,48 @@ class Enigma
   ###### The below code creates "The Shift"
 
   def create_shift
-    shift = create_keys.merge!(create_offset) {|key, value1, value2|
+    shifted_hash = create_keys.merge!(create_offset) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
+
+    @shift = shifted_hash
   end
 
   ###### The above code creates "The Shift"######
 
   def input_array
   @input.split("")
+  end
+
+  def a_shift
+  alphabet_array = create_character_set
+  shift_values = @shift["A"]
+  a_shift_array =  alphabet_array.rotate(-shift_values)
+  end
+
+  def b_shift
+  alphabet_array = create_characer_set
+  shift_values = @shift["B"]
+  bz_shift_array = alphabet_array.rotate(-shift_values)
+  end
+
+  def c_shift
+  alphabet_array = create_characer_set
+  shift_values = @shift["C"]
+  c_shift_array = alphabet_array.rotate(-shift_values)
+  end
+
+  def d_shift
+  alphabet_array = create_characer_set
+  shift_values = @shift["D"]
+  d_shift_array = alphabet_array.rotate(-shift_values)
+  end
 
   def rotate
-    new_array = [["A"], ["B"], ["C"], ["D"]]
-    input_array
+    create_character_set.each do |character|
+    input_array.each do |letter|
+      if letter == character
+
+      end
+    end
   end
 end
