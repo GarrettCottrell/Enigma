@@ -10,7 +10,7 @@ class Enigma
     ("a".."z").to_a << " "
   end
 
-  ######The following 4 methods all help to ultimately create "The Keys"######
+  ###### The following 4 methods create "The Keys" ######
   def create_key
     4.times.map{rand(4)}.join
   end
@@ -25,7 +25,7 @@ class Enigma
   string_integer.split(//).map {|chr| chr.to_i}
   end
 
-  def assign_characters_to_array_values
+  def create_keys
     integer_array = convert_to_array
     letter_array = ["A", "B", "C", "D"]
     key_hash = {}
@@ -35,14 +35,34 @@ class Enigma
     key_hash["D"] = integer_array[3..4]
     key_hash
   end
-  ######The above code created "The Keys"######
+
+  ###### The above code created "The Keys" ######
+
+  ###### The below code creates "The Offsets" ######
 
   def get_current_date
   Date.today.strftime("%m%d%y")
   end
 
-  def create_offsets
+  def create_offset_integer_array
     current_date_integer = get_current_date.to_i
     squared_date = (current_date_integer ** 2)
+    squared_date_string = squared_date.to_s
+    last_4_digits = squared_date_string[-4..-1]
+    last_4_digits_integer = last_4_digits.split(//).map {|number| number.to_i}
+  end
+
+  def create_offset
+    offset_hash = {}
+    values = create_offset_integer_array
+    keys = ["A", "B", "C", "D"]
+    offset_hash = Hash[keys.zip(values)]
+    offset_hash
+  end
+
+  ###### The above code creates "The Offsets"
+  def create_shift
+    shift = create_keys.merge!(create_offset) {|key, value1, value2|}
+    (value1 + value2)}
   end
 end
