@@ -49,16 +49,32 @@ class Enigma
 
   ######create_shifts assigns the shifts to their respective letters######
 
-  def create_shifts(key, date)
+  def a_shift(key, date)
     alphabet_array = create_character_set
-
     shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
+    a_shift = shift_hash["A"]
+  end
 
-    a_shift = alphabet_array.rotate(-shift_hash["A"])
-    b_shift = alphabet_array.rotate(-shift_hash["B"])
-    c_shift = alphabet_array.rotate(-shift_hash["C"])
-    d_shift = alphabet_array.rotate(-shift_hash["D"])
+  def b_shift(key, date)
+    alphabet_array = create_character_set
+    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
+    ((value1.join.to_i) + value2)}
+    b_shift = shift_hash["B"]
+  end
+
+  def c_shift(key, date)
+    alphabet_array = create_character_set
+    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
+    ((value1.join.to_i) + value2)}
+    c_shift = shift_hash["C"]
+  end
+
+  def d_shift(key, date)
+    alphabet_array = create_character_set
+    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
+    ((value1.join.to_i) + value2)}
+    d_shift = shift_hash["D"]
   end
 
   ###### message_as_array creates an array out of the messsage ######
@@ -66,25 +82,30 @@ class Enigma
   message.split("")
   end
 
-# ###### This is an array of the index values for ######
-# ###### each letter in my input of where they ######
-# ###### are in the actaul alphatt array ######
-#   def input_character_array_original(message)
-#     original_character_array = []
-#     message_as_array(message).each do |letter|
-#     create_character_set.each do |character|
-#       if letter == character
-#         original_character_array << create_character_set.index(character)
-#         end
-#       end
-#     end
-#     original_character_array
-#   end
+  def shift(letter, key, date)
 
-######The following method encrypts the message######
+    if letter == ("a" || "e" || "i" || "m" || "q" || "u" || "y")
+      a_shift(key, date)
+    elsif letter == ("b" || "f" || "j" || "n" || "r" || "v" || "z")
+      b_shift(key, date)
+    elsif letter == ("c" || "g" || "k" || "o" || "s" || "w" || " ")
+      c_shift(key, date)
+    else()
+      d_shift(key, date)
+    end
+  end
+
+######Encrypt takes the given message and returns the encrypted message######
 
   def encrypt(message, key = enigma.create_key, date = get_current_date)
+    encrypted_text = []
+    alphabet_array = create_character_set
 
-    
+      message.each_char do |letter|
+        old_index = alphabet_array.find_index(letter)
+        new_index = old_index + shift(letter, key, date) % (alphabet_array.count)
+        encrypted_text << alphabet_array[new_index]
+    end
+     encrypted_text
   end
 end
