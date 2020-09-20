@@ -31,22 +31,6 @@ class Enigma
   key_hash
   end
 
-  # def convert_to_array(key)
-  # string_integer = pad_with_zero
-  # string_integer.split("").map {|chr| chr.to_i}
-  # end
-  #
-  # def create_keys
-  #   integer_array = convert_to_array
-  #   letter_array = ["A", "B", "C", "D"]
-  #   key_hash = {}
-  #   key_hash["A"] = integer_array[0..1]
-  #   key_hash["B"] = integer_array[1..2]
-  #   key_hash["C"] = integer_array[2..3]
-  #   key_hash["D"] = integer_array[3..4]
-  #   key_hash
-  # end
-
   ###### The above code created "The Keys" ######
 
   ###### The below code creates "The Offsets" ######
@@ -77,8 +61,8 @@ class Enigma
   ###### The below code creates "The Shift"
 
   ######This method creares a hash for the "Final Shift"######
-  def create_shift
-    shifted_hash = create_keys.merge!(create_offset) {|key, value1, value2|
+  def create_shift(key)
+    shifted_hash = create_key_hash(key).merge!(create_offset) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
 
     @shift = shifted_hash

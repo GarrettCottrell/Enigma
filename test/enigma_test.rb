@@ -20,18 +20,11 @@ class EnigmaTest <Minitest::Test
     assert_equal 5, enigma.create_key.length
   end
 
-  def test_convert_to_array
+  def test_create_key_hash
     enigma = Enigma.new
+    expected = {"A"=>[0, 4], "B"=>[4, 8], "C"=>[8, 5], "D"=>[5, 3]}
 
-    assert_equal 5, enigma.convert_to_array.length
-    assert_equal 0, enigma.convert_to_array[0]
-  end
-
-
-  def test_assign_characters_to_array_values
-    enigma = Enigma.new
-
-    assert_equal 4, enigma.create_keys.length
+    assert_equal expected, enigma.create_key_hash("04853")
   end
 
   def test_get_current_date
@@ -54,15 +47,9 @@ class EnigmaTest <Minitest::Test
 
   def test_create_shift
     enigma = Enigma.new
+    expected = {"A"=>4, "B"=>52, "C"=>85, "D"=>53}
 
-    assert_equal 4, enigma.create_shift.length
-  end
-
-  def test_input_character_array_original
-
-    enigma = Enigma.new
-
-    assert_equal [], enigma.input_character_array_original
+    assert_equal expected, enigma.create_shift("04853")
   end
 
   def test_input_as_array
