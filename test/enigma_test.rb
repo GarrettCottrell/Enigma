@@ -39,6 +39,24 @@ class EnigmaTest <Minitest::Test
     assert_equal expected, enigma.create_offset_hash(enigma.get_current_date)
   end
 
+  def test_a_shift
+    enigma = Enigma.new
+
+    assert_equal 4, enigma.a_shift("04853", enigma.get_current_date)
+  end
+
+  def test_b_shift
+    enigma = Enigma.new
+
+    assert_equal 52, enigma.b_shift("04853", enigma.get_current_date)
+  end
+
+  def test_c_shift
+    enigma = Enigma.new
+
+    assert_equal 85, enigma.c_shift("04853", enigma.get_current_date)
+  end
+
   def test_d_shift
     enigma = Enigma.new
 
@@ -54,13 +72,13 @@ class EnigmaTest <Minitest::Test
   def test_shift
     enigma = Enigma.new
 
-    assert_equal 10, enigma.shift("a", "04853", enigma.get_current_date)
+    assert_equal 53, enigma.shift("x", "04853", enigma.get_current_date)
   end
 
   def test_encrypt
-    skip
+
     enigma = Enigma.new
 
-    assert_equal [], enigma.encrypt("garrett cottrell", "04853")
+    assert_equal ["k", "e", "p", "p", "i", "s", "s", "d", "g", "s", "s", "s", "p", "i", "k", "k"], enigma.encrypt("garrett cottrell", "04853")
   end
 end

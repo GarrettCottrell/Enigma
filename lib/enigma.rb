@@ -84,13 +84,13 @@ class Enigma
 
   def shift(letter, key, date)
 
-    if letter == ("a" || "e" || "i" || "m" || "q" || "u" || "y")
+    if ["a", "e", "i", "m", "q", "u", "y"].include?(letter)
       a_shift(key, date)
-    elsif letter == ("b" || "f" || "j" || "n" || "r" || "v" || "z")
+    elsif ["b", "f", "j", "n", "r", "v", "z"].include?(letter)
       b_shift(key, date)
-    elsif letter == ("c" || "g" || "k" || "o" || "s" || "w" || " ")
+    elsif ["c",  "g",  "k", "o", "s", "w", " "].include?(letter)
       c_shift(key, date)
-    else()
+    else
       d_shift(key, date)
     end
   end
@@ -100,10 +100,9 @@ class Enigma
   def encrypt(message, key = enigma.create_key, date = get_current_date)
     encrypted_text = []
     alphabet_array = create_character_set
-
       message.each_char do |letter|
         old_index = alphabet_array.find_index(letter)
-        new_index = old_index + shift(letter, key, date) % (alphabet_array.count)
+        new_index = ((old_index) + (shift(letter, key, date))) % (alphabet_array.count)
         encrypted_text << alphabet_array[new_index]
     end
      encrypted_text
