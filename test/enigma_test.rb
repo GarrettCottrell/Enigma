@@ -63,25 +63,39 @@ class EnigmaTest <Minitest::Test
     assert_equal 4, enigma.create_shift.length
   end
 
-  def test_rotate
-skip
+  def test_input_character_array_original
+
     enigma = Enigma.new
 
-    assert_equal [], enigma.rotate
+    assert_equal [], enigma.input_character_array_original
   end
 
-  def test_input_array
+  def test_input_as_array
     enigma = Enigma.new
 
-    assert_equal ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"], enigma.input_array
+    assert_equal ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"], enigma.input_as_array
   end
 
   def test_a_shift
-
+    skip
     enigma = Enigma.new
     enigma.create_shift
 
     assert_equal [], enigma.a_shift
+  end
 
+  def test_input_character_array_original
+    enigma = Enigma.new
+
+    assert_equal [6, 0, 17, 17, 4, 19, 19, 26, 2, 14, 19, 19, 17, 4, 11, 11], enigma.input_character_array_original
+
+  end
+
+  def test_shift_encrypts
+    enigma = Enigma.new
+    enigma.create_shift
+
+    assert_equal 4, enigma.a_shift_encrypt.length
+    assert_equal [], enigma.b_shift_encrypt
   end
 end
