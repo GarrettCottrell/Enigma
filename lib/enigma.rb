@@ -24,7 +24,7 @@ class Enigma
 
   def convert_to_array
   string_integer = pad_with_zero
-  string_integer.split(//).map {|chr| chr.to_i}
+  string_integer.split("").map {|chr| chr.to_i}
   end
 
   def create_keys
@@ -46,12 +46,12 @@ class Enigma
   Date.today.strftime("%m%d%y")
   end
 
-  def create_offset_integer_array
+  y
     current_date_integer = get_current_date.to_i
     squared_date = (current_date_integer ** 2)
     squared_date_string = squared_date.to_s
     last_4_digits = squared_date_string[-4..-1]
-    last_4_digits_integer = last_4_digits.split(//).map {|number| number.to_i}
+    last_4_digits_integer = last_4_digits.split("").map {|number| number.to_i}
   end
 
   def create_offset
