@@ -46,7 +46,8 @@ class Enigma
   Date.today.strftime("%m%d%y")
   end
 
-  y
+  def create_offset_integer_array
+
     current_date_integer = get_current_date.to_i
     squared_date = (current_date_integer ** 2)
     squared_date_string = squared_date.to_s
@@ -120,40 +121,9 @@ class Enigma
     original_character_array
   end
 
-######The following methods encrypt the code######
+######The following method encrypts the message######
 
-######This method applies the "A" shift to every 4th character######
-######starting with 0 and results in an array of the encrypted letters######
-  def a_shift_encrypt
-  current_shift = @shift
-  alphabet_array = create_character_set
-  original_input_array = input_as_array
-  original_array = input_character_array_original
-  a_shifted_array = []
-  a_shift_holder = a_shift
-  original_array.each do |index_value|
-    if original_array.index(index_value).between?(0, ((original_array.length) -1)) && (original_array.index(index_value)) == 0 || (original_array.index(index_value) % 4 == 0)
-    a_shifted_array << alphabet_array[(a_shift_holder.index(alphabet_array[index_value]))]
-      end
-    end
-    a_shifted_array
-  end
+def encrypt
+  
 
-  def b_shift_encrypt
-    current_shift = @shift
-    alphabet_array = create_character_set
-    original_input_array = input_as_array
-    original_array = input_character_array_original
-    b_shifted_array = []
-    b_shift_holder = a_shift
-    b_shift_original_input_array = original_array[1..((original_array.length) - 1)]
-    b_shift_original_input_array.each_with_index do |value, index_of_value|
-       if ((b_shift_original_input_array.index(index_of_value)) % 4 == 0)
-         b_shifted_array << alphabet_array[(b_shift_holder.index(alphabet_array[index_of_value]))]
-
-       end
-       require "pry";binding.pry
-    end
-    b_shifted_array
-  end
 end

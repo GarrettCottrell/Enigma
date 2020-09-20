@@ -42,19 +42,19 @@ class EnigmaTest <Minitest::Test
   def test_get_current_date
     enigma = Enigma.new
 
-    assert_equal "091920", enigma.get_current_date
+    assert_equal "092020", enigma.get_current_date
   end
 
   def test_create_offset_integer_arrray
     enigma = Enigma.new
 
-    assert_equal [6,4,0,0], enigma.create_offset_integer_array
+    assert_equal [0,4,0,0], enigma.create_offset_integer_array
   end
 
   def test_create_offset
     enigma = Enigma.new
 
-    assert_equal ({"A"=>6, "B"=>4, "C"=>0, "D"=>0}), enigma.create_offset
+    assert_equal ({"A"=>0, "B"=>4, "C"=>0, "D"=>0}), enigma.create_offset
   end
 
   def test_create_shift
