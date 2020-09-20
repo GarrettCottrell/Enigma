@@ -17,7 +17,7 @@ class EnigmaTest <Minitest::Test
 
   def test_create_key
     enigma = Enigma.new
-    assert_equal 4, enigma.create_key.length
+    assert_equal 5, enigma.create_key.length
   end
 
   def test_convert_to_array
@@ -27,11 +27,6 @@ class EnigmaTest <Minitest::Test
     assert_equal 0, enigma.convert_to_array[0]
   end
 
-  def test_pad_with_zero
-    enigma = Enigma.new
-
-    assert_equal "0", enigma.pad_with_zero[0]
-  end
 
   def test_assign_characters_to_array_values
     enigma = Enigma.new
@@ -89,13 +84,5 @@ class EnigmaTest <Minitest::Test
 
     assert_equal [6, 0, 17, 17, 4, 19, 19, 26, 2, 14, 19, 19, 17, 4, 11, 11], enigma.input_character_array_original
 
-  end
-
-  def test_shift_encrypts
-    enigma = Enigma.new
-    enigma.create_shift
-
-    assert_equal 4, enigma.a_shift_encrypt.length
-    assert_equal [], enigma.b_shift_encrypt
   end
 end

@@ -11,32 +11,41 @@ class Enigma
  ("a".."z").to_a << " "
   end
 
-  ###### The below 4 methods create "The Keys" ######
+###### create_key generates a 0 padded 5 different random key string ######
 
   def create_key
-    4.times.map{rand(4)}.join
+  string_integer = (4.times.map{rand(4)}.join)
+  string_integer.to_s.rjust(5, "0")
   end
 
-  def pad_with_zero
-    string_integer = create_key
-    string_integer.to_s.rjust(5, "0")
+###### create_key_hash is hard-coded, try to go back and refactor after ######
+
+  def create_key_hash(key)
+  split_key = key.split("").map {|chr| chr.to_i}
+  letters = ["A", "B", "C", "D"]
+  key_hash = {}
+  key_hash["A"] = split_key[0..1]
+  key_hash["B"] = split_key[1..2]
+  key_hash["C"] = split_key[2..3]
+  key_hash["D"] = split_key[3..4]
+  key_hash
   end
 
-  def convert_to_array
-  string_integer = pad_with_zero
-  string_integer.split("").map {|chr| chr.to_i}
-  end
-
-  def create_keys
-    integer_array = convert_to_array
-    letter_array = ["A", "B", "C", "D"]
-    key_hash = {}
-    key_hash["A"] = integer_array[0..1]
-    key_hash["B"] = integer_array[1..2]
-    key_hash["C"] = integer_array[2..3]
-    key_hash["D"] = integer_array[3..4]
-    key_hash
-  end
+  # def convert_to_array(key)
+  # string_integer = pad_with_zero
+  # string_integer.split("").map {|chr| chr.to_i}
+  # end
+  #
+  # def create_keys
+  #   integer_array = convert_to_array
+  #   letter_array = ["A", "B", "C", "D"]
+  #   key_hash = {}
+  #   key_hash["A"] = integer_array[0..1]
+  #   key_hash["B"] = integer_array[1..2]
+  #   key_hash["C"] = integer_array[2..3]
+  #   key_hash["D"] = integer_array[3..4]
+  #   key_hash
+  # end
 
   ###### The above code created "The Keys" ######
 
@@ -82,6 +91,8 @@ class Enigma
   @input.split("")
   end
 
+###### The following methods define the A/B/C/D shifts ######
+
   def a_shift
   alphabet_array = create_character_set
   shift_values = @shift["A"]
@@ -123,7 +134,7 @@ class Enigma
 
 ######The following method encrypts the message######
 
-def encrypt
-  
+  def encrypt(message, key = enigma.create_key, date = enigma.get_current_date)
 
+  end
 end
