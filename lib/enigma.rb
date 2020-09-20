@@ -97,7 +97,7 @@ class Enigma
 
 ######Encrypt takes the given message and returns the encrypted message######
 
-  def encrypt(message, key = enigma.create_key, date = get_current_date)
+  def encrypt(message, key = create_key, date = get_current_date)
     encrypted_text = []
     alphabet_array = create_character_set
       message.each_char do |letter|
@@ -105,6 +105,6 @@ class Enigma
         new_index = ((old_index) + (shift(letter, key, date))) % (alphabet_array.count)
         encrypted_text << alphabet_array[new_index]
     end
-     encrypted_text
+     encrypted_text.join
   end
 end
