@@ -3,8 +3,6 @@ require 'date'
 class Enigma
   attr_reader :input, :shift
   def initialize
-    @input = "garrett cottrell" #or it could be './lib/message.txt'
-    @shift = {}
   end
 
   def create_character_set
@@ -31,94 +29,62 @@ class Enigma
   key_hash
   end
 
-  ###### The above code created "The Keys" ######
+  ###### The above code created "The Key and key hash" ######
 
-  ###### The below code creates "The Offsets" ######
+  ###### get_current_date created a current_date string ######
 
   def get_current_date
   Date.today.strftime("%m%d%y")
   end
 
-  def create_offset_integer_array
+  ###### create_offset_hash creates the ######
+  ###### offset hash based off of current_date ######
 
-    current_date_integer = get_current_date.to_i
-    squared_date = (current_date_integer ** 2)
-    squared_date_string = squared_date.to_s
-    last_4_digits = squared_date_string[-4..-1]
-    last_4_digits_integer = last_4_digits.split("").map {|number| number.to_i}
+  def create_offset_hash(date)
+  offset_number = ((date.to_i ** 2).to_s[-4..-1]).split("").map {|number| number.to_i}
+  keys = ["A", "B", "C", "D"]
+  offset_hash = Hash[keys.zip(offset_number)]
+  offset_hash
   end
 
-  def create_offset
-    offset_hash = {}
-    values = create_offset_integer_array
-    keys = ["A", "B", "C", "D"]
-    offset_hash = Hash[keys.zip(values)]
-    offset_hash
-  end
+  ######create_shifts assigns the shifts to their respective letters######
 
-  ###### The above code creates "The Offsets"
+  def create_shifts(key, date)
+    alphabet_array = create_character_set
 
-  ###### The below code creates "The Shift"
-
-  ######This method creares a hash for the "Final Shift"######
-  def create_shift(key)
-    shifted_hash = create_key_hash(key).merge!(create_offset) {|key, value1, value2|
+    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
 
-    @shift = shifted_hash
+    a_shift = alphabet_array.rotate(-shift_hash["A"])
+    b_shift = alphabet_array.rotate(-shift_hash["B"])
+    c_shift = alphabet_array.rotate(-shift_hash["C"])
+    d_shift = alphabet_array.rotate(-shift_hash["D"])
   end
 
-  ###### The above code creates "The Shift"######
-
-  ###### This method creates an array out of the original input ######
-  def input_as_array
-  @input.split("")
+  ###### message_as_array creates an array out of the messsage ######
+  def message_as_array(message)
+  message.split("")
   end
 
-###### The following methods define the A/B/C/D shifts ######
-
-  def a_shift
-  alphabet_array = create_character_set
-  shift_values = @shift["A"]
-  a_shift_array =  alphabet_array.rotate(-shift_values)
-  end
-
-  def b_shift
-  alphabet_array = create_character_set
-  shift_values = @shift["B"]
-  bz_shift_array = alphabet_array.rotate(-shift_values)
-  end
-
-  def c_shift
-  alphabet_array = create_characer_set
-  shift_values = @shift["C"]
-  c_shift_array = alphabet_array.rotate(-shift_values)
-  end
-
-  def d_shift
-  alphabet_array = create_characer_set
-  shift_values = @shift["D"]
-  d_shift_array = alphabet_array.rotate(-shift_values)
-  end
-
-###### This is an array of the index values for ######
-###### each letter in my input of where they ######
-###### are in the actaul alphatt array ######
-  def input_character_array_original
-    original_character_array = []
-    input_as_array.each do |letter|
-    create_character_set.each do |character|
-      if letter == character
-        original_character_array << create_character_set.index(character)
-        end
-      end
-    end
-    original_character_array
-  end
+# ###### This is an array of the index values for ######
+# ###### each letter in my input of where they ######
+# ###### are in the actaul alphatt array ######
+#   def input_character_array_original(message)
+#     original_character_array = []
+#     message_as_array(message).each do |letter|
+#     create_character_set.each do |character|
+#       if letter == character
+#         original_character_array << create_character_set.index(character)
+#         end
+#       end
+#     end
+#     original_character_array
+#   end
 
 ######The following method encrypts the message######
 
-  def encrypt(message, key = enigma.create_key, date = enigma.get_current_date)
+  def encrypt(message, key = enigma.create_key, date = get_current_date)
 
+    
   end
 end

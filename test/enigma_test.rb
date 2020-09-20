@@ -6,7 +6,6 @@ class EnigmaTest <Minitest::Test
     enigma = Enigma.new
 
     assert_instance_of Enigma, enigma
-    assert_equal "garrett cottrell", enigma.input
   end
 
   def test_create_character_set
@@ -33,43 +32,37 @@ class EnigmaTest <Minitest::Test
     assert_equal "092020", enigma.get_current_date
   end
 
-  def test_create_offset_integer_arrray
+  def test_create_offset_hash
     enigma = Enigma.new
+    expected = {"A"=>0, "B"=>4, "C"=>0, "D"=>0}
 
-    assert_equal [0,4,0,0], enigma.create_offset_integer_array
+    assert_equal expected, enigma.create_offset_hash(enigma.get_current_date)
   end
 
-  def test_create_offset
+  def test_create_shifts
     enigma = Enigma.new
+    expected_d = ["b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a"]
 
-    assert_equal ({"A"=>0, "B"=>4, "C"=>0, "D"=>0}), enigma.create_offset
+    assert_equal expected_d, enigma.create_shifts("04853", enigma.get_current_date)
   end
 
-  def test_create_shift
-    enigma = Enigma.new
-    expected = {"A"=>4, "B"=>52, "C"=>85, "D"=>53}
-
-    assert_equal expected, enigma.create_shift("04853")
-  end
-
-  def test_input_as_array
+  def test_message_as_array
     enigma = Enigma.new
 
-    assert_equal ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"], enigma.input_as_array
-  end
-
-  def test_a_shift
-    skip
-    enigma = Enigma.new
-    enigma.create_shift
-
-    assert_equal [], enigma.a_shift
+    assert_equal ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"], enigma.message_as_array("garrett cottrell")
   end
 
   def test_input_character_array_original
+    skip
     enigma = Enigma.new
 
-    assert_equal [6, 0, 17, 17, 4, 19, 19, 26, 2, 14, 19, 19, 17, 4, 11, 11], enigma.input_character_array_original
+    assert_equal [6, 0, 17, 17, 4, 19, 19, 26, 2, 14, 19, 19, 17, 4, 11, 11], enigma.input_character_array_original("garrett cottrell")
 
+  end
+
+  def test_encrypt
+    enigma = Enigma.new
+
+    assert_equal [], enigma.encrypt("garrett cottrell", "04853")
   end
 end
