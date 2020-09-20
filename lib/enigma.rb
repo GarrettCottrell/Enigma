@@ -29,9 +29,7 @@ class Enigma
   key_hash
   end
 
-  ###### The above code created "The Key and key hash" ######
-
-  ###### get_current_date created a current_date string ######
+  ###### get_current_date creates a current_date string ######
 
   def get_current_date
   Date.today.strftime("%m%d%y")
@@ -47,7 +45,8 @@ class Enigma
   offset_hash
   end
 
-  ######create_shifts assigns the shifts to their respective letters######
+  ###### These shifts define how much each shift ######
+  ###### is moving the alphabet_array and return an integer ######
 
   def a_shift(key, date)
     alphabet_array = create_character_set
@@ -78,9 +77,13 @@ class Enigma
   end
 
   ###### message_as_array creates an array out of the messsage ######
+
   def message_as_array(message)
   message.split("")
   end
+
+###### shift defines which letters should be shifted by which shifts ######
+###### this is hard-coded, need to go back and refactor ######
 
   def shift(letter, key, date)
 
@@ -95,7 +98,7 @@ class Enigma
     end
   end
 
-######Encrypt takes the given message and returns the encrypted message######
+###### Encrypt takes the given message and returns the encrypted message ######
 
   def encrypt(message, key = create_key, date = get_current_date)
     encrypted_text = []
@@ -105,6 +108,12 @@ class Enigma
         new_index = ((old_index) + (shift(letter, key, date))) % (alphabet_array.count)
         encrypted_text << alphabet_array[new_index]
     end
-     encrypted_text.join
+    encrypted_output = {}
+
+    encrypted_output[:encryption] = encrypted_text.join
+    encrypted_output[:key] = key
+    encrypted_output[:date] = date
+
+    encrypted_output
   end
 end

@@ -79,6 +79,6 @@ class EnigmaTest <Minitest::Test
 
     enigma = Enigma.new
 
-    assert_equal ["k", "e", "p", "p", "i", "s", "s", "d", "g", "s", "s", "s", "p", "i", "k", "k"], enigma.encrypt("garrett cottrell", "04853")
+    assert_equal "keppissdgssspikk", enigma.encrypt("garrett cottrell", "04853")
   end
 end
