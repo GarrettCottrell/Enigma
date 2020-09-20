@@ -15,6 +15,8 @@ handle.close
 
 writer = File.open(ARGV[1], "w")
 
-writer.write(new_text.join)
+writer.write(new_text)
 
 writer.close
+
+puts "Created 'encrypted.txt' with the key #{new_text[:key]} and date #{new_text[:date]}"
