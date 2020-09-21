@@ -1,6 +1,6 @@
 require "./test/test_helper"
 require "./lib/enigma"
-require './lib/shift'
+require './lib/shiftable'
 
 class EnigmaTest <Minitest::Test
   def test_it_exists
@@ -42,7 +42,6 @@ class EnigmaTest <Minitest::Test
 
   def test_a_shift
     enigma = Enigma.new
-    shift = Shift.new
 
     assert_equal 8, enigma.a_shift("04853", enigma.get_current_date)
   end

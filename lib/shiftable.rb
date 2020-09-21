@@ -1,6 +1,4 @@
-class Shift
-  def initialize
-  end
+module Shiftable
 
 ###### create_character_set creates an alphabet array ######
 ###### with a space character included ######
@@ -27,5 +25,11 @@ class Shift
   key_hash["C"] = split_key[2..3]
   key_hash["D"] = split_key[3..4]
   key_hash
+  end
+
+  ###### get_current_date creates a current_date string ######
+
+  def get_current_date
+  Date.today.strftime("%m%d%y")
   end
 end
