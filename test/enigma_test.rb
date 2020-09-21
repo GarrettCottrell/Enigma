@@ -6,7 +6,6 @@ class EnigmaTest <Minitest::Test
     enigma = Enigma.new
 
     assert_instance_of Enigma, enigma
-    assert_equal "garrett cottrell", enigma.input
   end
 
   def test_create_character_set
@@ -17,71 +16,69 @@ class EnigmaTest <Minitest::Test
 
   def test_create_key
     enigma = Enigma.new
-    assert_equal 4, enigma.create_key.length
+    assert_equal 5, enigma.create_key.length
   end
 
-  def test_convert_to_array
+  def test_create_key_hash
     enigma = Enigma.new
+    expected = {"A"=>[0, 4], "B"=>[4, 8], "C"=>[8, 5], "D"=>[5, 3]}
 
-    assert_equal 5, enigma.convert_to_array.length
-    assert_equal 0, enigma.convert_to_array[0]
-  end
-
-  def test_pad_with_zero
-    enigma = Enigma.new
-
-    assert_equal "0", enigma.pad_with_zero[0]
-  end
-
-  def test_assign_characters_to_array_values
-    enigma = Enigma.new
-
-    assert_equal 4, enigma.create_keys.length
+    assert_equal expected, enigma.create_key_hash("04853")
   end
 
   def test_get_current_date
     enigma = Enigma.new
 
-    assert_equal "091920", enigma.get_current_date
+    assert_equal "092020", enigma.get_current_date
   end
 
-  def test_create_offset_integer_arrray
+  def test_create_offset_hash
     enigma = Enigma.new
+    expected = {"A"=>0, "B"=>4, "C"=>0, "D"=>0}
 
-    assert_equal [6,4,0,0], enigma.create_offset_integer_array
-  end
-
-  def test_create_offset
-    enigma = Enigma.new
-
-    assert_equal ({"A"=>6, "B"=>4, "C"=>0, "D"=>0}), enigma.create_offset
-  end
-
-  def test_create_shift
-    enigma = Enigma.new
-
-    assert_equal 4, enigma.create_shift.length
-  end
-
-  def test_rotate
-skip
-    enigma = Enigma.new
-
-    assert_equal [], enigma.rotate
-  end
-
-  def test_input_array
-    enigma = Enigma.new
-
-    assert_equal ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"], enigma.input_array
+    assert_equal expected, enigma.create_offset_hash(enigma.get_current_date)
   end
 
   def test_a_shift
+    enigma = Enigma.new
+
+    assert_equal 4, enigma.a_shift("04853", enigma.get_current_date)
+  end
+
+  def test_b_shift
+    enigma = Enigma.new
+
+    assert_equal 52, enigma.b_shift("04853", enigma.get_current_date)
+  end
+
+  def test_c_shift
+    enigma = Enigma.new
+
+    assert_equal 85, enigma.c_shift("04853", enigma.get_current_date)
+  end
+
+  def test_d_shift
+    enigma = Enigma.new
+
+    assert_equal 53, enigma.d_shift("04853", enigma.get_current_date)
+  end
+
+  def test_message_as_array
+    enigma = Enigma.new
+
+    assert_equal ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"], enigma.message_as_array("garrett cottrell")
+  end
+
+  def test_shift
+    enigma = Enigma.new
+
+    assert_equal 53, enigma.shift("x", "04853", enigma.get_current_date)
+  end
+
+  def test_encrypt
 
     enigma = Enigma.new
-    enigma.create_shift
 
-    assert_equal [], enigma.a_shift
-
+    assert_equal "keppissdgssspikk", enigma.encrypt("garrett cottrell", "04853")
   end
 end
