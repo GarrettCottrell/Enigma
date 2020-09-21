@@ -6,7 +6,7 @@ class Cipher
   def initialize
   end
 
-  def encrypt(message, key = create_key, date = get_current_date)
+  def code_message(message, key = create_key, date = get_current_date)
   encrypted_text = []
   counter = 1
   alphabet_array = create_character_set
