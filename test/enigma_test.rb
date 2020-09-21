@@ -69,7 +69,6 @@ class EnigmaTest <Minitest::Test
     assert_equal ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"], enigma.message_as_array("garrett cottrell")
   end
 
-
   def test_encrypt
     enigma = Enigma.new
 
