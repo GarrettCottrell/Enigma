@@ -1,33 +1,35 @@
 require 'date'
+require './lib/shift'
 
 class Enigma
-  attr_reader :input, :shift
+  attr_reader :alphabet_array, :shift
   def initialize
+    @shift = Shift.new
   end
 
-  def create_character_set
- ("a".."z").to_a << " "
-  end
+ #  def create_character_set
+ # ("a".."z").to_a << " "
+ #  end
 
 ###### create_key generates a 0 padded 5 different random key string ######
 
-  def create_key
-  string_integer = (4.times.map{rand(4)}.join)
-  string_integer.to_s.rjust(5, "0")
-  end
+  # def create_key
+  # string_integer = (4.times.map{rand(10)}.join)
+  # string_integer.to_s.rjust(5, "0")
+  # end
 
 ###### create_key_hash is hard-coded, try to go back and refactor after ######
 
-  def create_key_hash(key)
-  split_key = key.split("").map {|chr| chr.to_i}
-  letters = ["A", "B", "C", "D"]
-  key_hash = {}
-  key_hash["A"] = split_key[0..1]
-  key_hash["B"] = split_key[1..2]
-  key_hash["C"] = split_key[2..3]
-  key_hash["D"] = split_key[3..4]
-  key_hash
-  end
+  # def create_key_hash(key)
+  # split_key = key.split("").map {|chr| chr.to_i}
+  # letters = ["A", "B", "C", "D"]
+  # key_hash = {}
+  # key_hash["A"] = split_key[0..1]
+  # key_hash["B"] = split_key[1..2]
+  # key_hash["C"] = split_key[2..3]
+  # key_hash["D"] = split_key[3..4]
+  # key_hash
+  # end
 
   ###### get_current_date creates a current_date string ######
 
@@ -49,28 +51,28 @@ class Enigma
   ###### is moving the alphabet_array and return an integer ######
 
   def a_shift(key, date)
-    alphabet_array = create_character_set
+    alphabet_array = shift.create_character_set
     shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
     a_shift = shift_hash["A"]
   end
 
   def b_shift(key, date)
-    alphabet_array = create_character_set
+    alphabet_array = shift.create_character_set
     shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
     b_shift = shift_hash["B"]
   end
 
   def c_shift(key, date)
-    alphabet_array = create_character_set
+    alphabet_array = shift.create_character_set
     shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
     c_shift = shift_hash["C"]
   end
 
   def d_shift(key, date)
-    alphabet_array = create_character_set
+    alphabet_array = shift.create_character_set
     shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
     d_shift = shift_hash["D"]
@@ -85,10 +87,10 @@ class Enigma
 
 ###### Encrypt takes the given message and returns the encrypted message ######
 
-  def encrypt(message, key = create_key, date = get_current_date)
+  def encrypt(message, key = shift.create_key, date = get_current_date)
   encrypted_text = []
   counter = 1
-  alphabet_array = create_character_set
+  alphabet_array = shift.create_character_set
     message.each_char do |letter|
       if counter == 1
         old_index = alphabet_array.find_index(letter)
@@ -127,7 +129,7 @@ class Enigma
   def decrypt(message, key, date = get_current_date)
   decrypted_text = []
   counter = 1
-  alphabet_array = create_character_set
+  alphabet_array = shift.create_character_set
     message.each_char do |letter|
       if counter == 1
         old_index = alphabet_array.find_index(letter)
