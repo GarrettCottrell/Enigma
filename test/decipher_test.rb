@@ -68,9 +68,9 @@ class DecipherTest <Minitest::Test
   def test_decode_message
     decipher = Decipher.new
     cipher = Cipher.new
-    cipher.code_message("garrett cottrell", "04853")
-    expected = {:decryption=>"garrett cottrell", :key=>"04853", :date=>"092120"}
+    cipher.code_message("garrett cottrell", "04853", "092120")
+    expected = ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"]
 
-    assert_equal expected, decipher.decode_message("ozvqmrxzkmxszcpk", "04853")
+    assert_equal expected, decipher.decode_message("ozvqmrxzkmxszcpk", "04853", "092120")
   end
 end
