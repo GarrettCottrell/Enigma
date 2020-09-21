@@ -120,23 +120,47 @@ class Enigma
 
   encrypted_output
   end
+
+  def decrypt(message, key, date = get_current_date)
+  decrypted_text = []
+  counter = 1
+  alphabet_array = create_character_set
+    message.each_char do |letter|
+      if counter == 1
+        old_index = alphabet_array.find_index(letter)
+        decrypted_shift = (alphabet_array.count) - (a_shift(key, date))
+        decrypted_index = (old_index + decrypted_shift) % (alphabet_array.count)
+        decrypted_text << alphabet_array[decrypted_index]
+        counter += 1
+      elsif counter == 2
+        old_index = alphabet_array.find_index(letter)
+        decrypted_shift = (alphabet_array.count) - (b_shift(key, date))
+        decrypted_index = (old_index + decrypted_shift) % (alphabet_array.count)
+        decrypted_text << alphabet_array[decrypted_index]
+        counter += 1
+      elsif counter == 3
+        old_index = alphabet_array.find_index(letter)
+        decrypted_shift = (alphabet_array.count) - (c_shift(key, date))
+        decrypted_index = (old_index + decrypted_shift) % (alphabet_array.count)
+        decrypted_text << alphabet_array[decrypted_index]
+        counter += 1
+      elsif counter == 4
+        old_index = alphabet_array.find_index(letter)
+        decrypted_shift = (alphabet_array.count) - (d_shift(key, date))
+        decrypted_index = (old_index + decrypted_shift) % (alphabet_array.count)
+        decrypted_text << alphabet_array[decrypted_index]
+        counter = 1
+      end
+    end
+  decrypted_output = {}
+
+  decrypted_output[:decryption] = decrypted_text.join
+  decrypted_output[:key] = key
+  decrypted_output[:date] = date
+
+  decrypted_output
+  end
 end
-  # def encrypt(message, key = create_key, date = get_current_date)
-  #   encrypted_text = []
-  #   alphabet_array = create_character_set
-  #     message.each_char do |letter|
-  #       old_index = alphabet_array.find_index(letter)
-  #       new_index = ((old_index) + (shift(letter, key, date))) % (alphabet_array.count)
-  #       encrypted_text << alphabet_array[new_index]
-  #   end
-  #   encrypted_output = {}
-  #
-  #   encrypted_output[:encryption] = encrypted_text.join
-  #   encrypted_output[:key] = key
-  #   encrypted_output[:date] = date
-  #
-  #   encrypted_output
-  # end
 
 #   def decrypt(message, key, date = get_current_date)
 #     decrypted_text = []
@@ -146,7 +170,6 @@ end
 #         encrypt_index = ((first_index) + (shift(letter, key, date))) % (alphabet_array.count)
 #         decrypt_index = alphabet_array.count - encrypt_index
 #         decrypted_text << alphabet_array[decrypt_index]
-#         require "pry";binding.pry
 #     end
 #     decrypted_output = {}
 #

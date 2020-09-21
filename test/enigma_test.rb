@@ -79,9 +79,8 @@ class EnigmaTest <Minitest::Test
   end
 
   def test_decrypt
-    skip
     enigma = Enigma.new
 
-    assert_equal [], enigma.decrypt("keppissdgssspikk", "04853")
+    assert_equal [], enigma.decrypt("kzvqirxzgmxsvcpk", "04853")
   end
 end
