@@ -8,7 +8,7 @@ handle = File.open(ARGV[0], "r")
 
 incoming_text = handle.read
 
-new_text = cipher.code_message(incoming_text.downcase.chomp)
+new_text = enigma.encrypt(incoming_text.downcase.chomp)
 
 handle.close
 
