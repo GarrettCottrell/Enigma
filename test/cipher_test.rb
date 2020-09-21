@@ -9,12 +9,12 @@ class CipherTest <Minitest::Test
     assert_instance_of Cipher, cipher
   end
 
-  def test_encrypt
+  def test_code_message
     cipher = Cipher.new
 
     expected = {:encryption=>"ozvqmrxzkmxszcpk", :key=>"04853", :date=>"092120"}
 
-    assert_equal expected, cipher.encrypt("garrett cottrell", "04853")
+    assert_equal expected, cipher.code_message("garrett cottrell", "04853")
   end
 
   def test_create_key
