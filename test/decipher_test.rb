@@ -69,7 +69,7 @@ class DecipherTest <Minitest::Test
     decipher = Decipher.new
     cipher = Cipher.new
     cipher.code_message("garrett cottrell", "04853")
-    expected = expected = {:decryption=>"garrett cottrell", :key=>"04853", :date=>"092120"}
+    expected = {:decryption=>"garrett cottrell", :key=>"04853", :date=>"092120"}
 
     assert_equal expected, decipher.decode_message("ozvqmrxzkmxszcpk", "04853")
   end

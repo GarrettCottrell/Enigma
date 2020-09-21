@@ -6,7 +6,7 @@ class Cipher
   def initialize
   end
 
-  def code_message(message, key = create_key, date = get_current_date)
+  def code_message(message, key, date)
   encrypted_text = []
   counter = 1
   alphabet_array = create_character_set
@@ -33,12 +33,6 @@ class Cipher
         counter = 1
       end
     end
-  encrypted_output = {}
-
-  encrypted_output[:encryption] = encrypted_text.join
-  encrypted_output[:key] = key
-  encrypted_output[:date] = date
-
-  encrypted_output
+    encrypted_text
   end
 end

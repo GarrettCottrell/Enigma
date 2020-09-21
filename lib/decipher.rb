@@ -6,7 +6,7 @@ class Decipher
   def initialize
   end
 
-  def decode_message(message, key, date = get_current_date)
+  def decode_message(message, key, date)
   decrypted_text = []
   counter = 1
   alphabet_array = create_character_set
@@ -37,12 +37,6 @@ class Decipher
         counter = 1
       end
     end
-  decrypted_output = {}
-
-  decrypted_output[:decryption] = decrypted_text.join
-  decrypted_output[:key] = key
-  decrypted_output[:date] = date
-
-  decrypted_output
+    decrypted_text
   end
 end
