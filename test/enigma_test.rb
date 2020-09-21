@@ -80,7 +80,8 @@ class EnigmaTest <Minitest::Test
 
   def test_decrypt
     enigma = Enigma.new
+    expected = {:decryption=>"garrett cottrell", :key=>"04853", :date=>"092020"}
 
-    assert_equal [], enigma.decrypt("kzvqirxzgmxsvcpk", "04853")
+    assert_equal expected, enigma.decrypt("kzvqirxzgmxsvcpk", "04853")
   end
 end
