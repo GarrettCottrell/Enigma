@@ -63,11 +63,4 @@ class EnigmaTest <Minitest::Test
 
     assert_equal 53, enigma.d_shift("04853", enigma.get_current_date)
   end
-
-  def test_decrypt
-    enigma = Enigma.new
-    expected = {:decryption=>"garrett cottrell", :key=>"04853", :date=>"092120"}
-
-    assert_equal expected, enigma.decrypt("ozvqmrxzkmxszcpk", "04853")
-  end
 end
