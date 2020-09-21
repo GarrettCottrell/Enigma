@@ -32,4 +32,14 @@ module Shiftable
   def get_current_date
   Date.today.strftime("%m%d%y")
   end
+
+  ###### create_offset_hash creates the ######
+  ###### offset hash based off of current_date ######
+
+  def create_offset_hash(date)
+  offset_number = ((date.to_i ** 2).to_s[-4..-1]).split("").map {|number| number.to_i}
+  keys = ["A", "B", "C", "D"]
+  offset_hash = Hash[keys.zip(offset_number)]
+  offset_hash
+  end
 end
