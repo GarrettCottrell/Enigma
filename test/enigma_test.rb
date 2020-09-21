@@ -64,12 +64,6 @@ class EnigmaTest <Minitest::Test
     assert_equal 53, enigma.d_shift("04853", enigma.get_current_date)
   end
 
-  def test_message_as_array
-    enigma = Enigma.new
-
-    assert_equal ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"], enigma.message_as_array("garrett cottrell")
-  end
-
   def test_encrypt
     enigma = Enigma.new
 

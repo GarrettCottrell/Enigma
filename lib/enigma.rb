@@ -5,14 +5,7 @@ class Enigma
   include Shiftable
   def initialize
   end
-
-  ###### message_as_array creates an array out of the messsage ######
-
-  def message_as_array(message)
-  message.split("")
-  end
-
-
+  
 ###### Encrypt takes the given message and returns the encrypted message ######
 
   def encrypt(message, key = create_key, date = get_current_date)
