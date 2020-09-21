@@ -116,4 +116,9 @@ class Enigma
 
     encrypted_output
   end
+
+  def decrypt(ciphertext, key, date = get_current_date)
+
+
+  end
 end
