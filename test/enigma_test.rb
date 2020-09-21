@@ -29,12 +29,12 @@ class EnigmaTest <Minitest::Test
   def test_get_current_date
     enigma = Enigma.new
 
-    assert_equal "092020", enigma.get_current_date
+    assert_equal "092120", enigma.get_current_date
   end
 
   def test_create_offset_hash
     enigma = Enigma.new
-    expected = {"A"=>0, "B"=>4, "C"=>0, "D"=>0}
+    expected = {"A"=>4, "B"=>4, "C"=>0, "D"=>0}
 
     assert_equal expected, enigma.create_offset_hash(enigma.get_current_date)
   end
@@ -42,7 +42,7 @@ class EnigmaTest <Minitest::Test
   def test_a_shift
     enigma = Enigma.new
 
-    assert_equal 4, enigma.a_shift("04853", enigma.get_current_date)
+    assert_equal 8, enigma.a_shift("04853", enigma.get_current_date)
   end
 
   def test_b_shift
@@ -72,15 +72,15 @@ class EnigmaTest <Minitest::Test
   def test_encrypt
     enigma = Enigma.new
 
-    expected = {:encryption=>"kzvqirxzgmxsvcpk", :key=>"04853", :date=>"092020"}
+    expected = {:encryption=>"ozvqmrxzkmxszcpk", :key=>"04853", :date=>"092120"}
 
     assert_equal expected, enigma.encrypt("garrett cottrell", "04853")
   end
 
   def test_decrypt
     enigma = Enigma.new
-    expected = {:decryption=>"garrett cottrell", :key=>"04853", :date=>"092020"}
+    expected = {:decryption=>"garrett cottrell", :key=>"04853", :date=>"092120"}
 
-    assert_equal expected, enigma.decrypt("kzvqirxzgmxsvcpk", "04853")
+    assert_equal expected, enigma.decrypt("ozvqmrxzkmxszcpk", "04853")
   end
 end
