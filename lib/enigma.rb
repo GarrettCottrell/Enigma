@@ -82,43 +82,78 @@ class Enigma
   message.split("")
   end
 
-###### shift defines which letters should be shifted by which shifts ######
-###### this is hard-coded, need to go back and refactor ######
-
-  def shift(letter, key, date)
-
-    if ["a", "e", "i", "m", "q", "u", "y"].include?(letter)
-      a_shift(key, date)
-    elsif ["b", "f", "j", "n", "r", "v", "z"].include?(letter)
-      b_shift(key, date)
-    elsif ["c",  "g",  "k", "o", "s", "w", " "].include?(letter)
-      c_shift(key, date)
-    else
-      d_shift(key, date)
-    end
-  end
 
 ###### Encrypt takes the given message and returns the encrypted message ######
 
   def encrypt(message, key = create_key, date = get_current_date)
-    encrypted_text = []
-    alphabet_array = create_character_set
-      message.each_char do |letter|
+  encrypted_text = []
+  counter = 1
+  alphabet_array = create_character_set
+    message.each_char do |letter|
+      if counter == 1
         old_index = alphabet_array.find_index(letter)
-        new_index = ((old_index) + (shift(letter, key, date))) % (alphabet_array.count)
+        new_index = ((old_index) + (a_shift(key, date))) % (alphabet_array.count)
         encrypted_text << alphabet_array[new_index]
+        counter += 1
+      elsif counter == 2
+        old_index = alphabet_array.find_index(letter)
+        new_index = ((old_index) + (b_shift(key, date))) % (alphabet_array.count)
+        encrypted_text << alphabet_array[new_index]
+        counter += 1
+      elsif counter == 3
+        old_index = alphabet_array.find_index(letter)
+        new_index = ((old_index) + (c_shift(key, date))) % (alphabet_array.count)
+        encrypted_text << alphabet_array[new_index]
+        counter += 1
+      elsif counter == 4
+        old_index = alphabet_array.find_index(letter)
+        new_index = ((old_index) + (d_shift(key, date))) % (alphabet_array.count)
+        encrypted_text << alphabet_array[new_index]
+        counter = 1
+      end
     end
-    encrypted_output = {}
+  encrypted_output = {}
 
-    encrypted_output[:encryption] = encrypted_text.join
-    encrypted_output[:key] = key
-    encrypted_output[:date] = date
+  encrypted_output[:encryption] = encrypted_text.join
+  encrypted_output[:key] = key
+  encrypted_output[:date] = date
 
-    encrypted_output
-  end
-
-  def decrypt(ciphertext, key, date = get_current_date)
-
-
+  encrypted_output
   end
 end
+  # def encrypt(message, key = create_key, date = get_current_date)
+  #   encrypted_text = []
+  #   alphabet_array = create_character_set
+  #     message.each_char do |letter|
+  #       old_index = alphabet_array.find_index(letter)
+  #       new_index = ((old_index) + (shift(letter, key, date))) % (alphabet_array.count)
+  #       encrypted_text << alphabet_array[new_index]
+  #   end
+  #   encrypted_output = {}
+  #
+  #   encrypted_output[:encryption] = encrypted_text.join
+  #   encrypted_output[:key] = key
+  #   encrypted_output[:date] = date
+  #
+  #   encrypted_output
+  # end
+
+#   def decrypt(message, key, date = get_current_date)
+#     decrypted_text = []
+#     alphabet_array = create_character_set
+#       message.each_char do |letter|
+#         first_index = alphabet_array.find_index(letter)
+#         encrypt_index = ((first_index) + (shift(letter, key, date))) % (alphabet_array.count)
+#         decrypt_index = alphabet_array.count - encrypt_index
+#         decrypted_text << alphabet_array[decrypt_index]
+#         require "pry";binding.pry
+#     end
+#     decrypted_output = {}
+#
+#     decrypted_output[:decryption] = decrypted_text.join
+#     decrypted_output[:key] = key
+#     decrypted_output[:date] = date
+#
+#     decrypted_output
+#   end
+# end

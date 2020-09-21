@@ -69,16 +69,19 @@ class EnigmaTest <Minitest::Test
     assert_equal ["g", "a", "r", "r", "e", "t", "t", " ", "c", "o", "t", "t", "r", "e", "l", "l"], enigma.message_as_array("garrett cottrell")
   end
 
-  def test_shift
-    enigma = Enigma.new
-
-    assert_equal 53, enigma.shift("x", "04853", enigma.get_current_date)
-  end
 
   def test_encrypt
-
     enigma = Enigma.new
 
-    assert_equal "keppissdgssspikk", enigma.encrypt("garrett cottrell", "04853")
+    expected = {:encryption=>"kzvqirxzgmxsvcpk", :key=>"04853", :date=>"092020"}
+
+    assert_equal expected, enigma.encrypt("garrett cottrell", "04853")
+  end
+
+  def test_decrypt
+    skip
+    enigma = Enigma.new
+
+    assert_equal [], enigma.decrypt("keppissdgssspikk", "04853")
   end
 end
