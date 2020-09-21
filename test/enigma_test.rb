@@ -20,12 +20,12 @@ class EnigmaTest <Minitest::Test
   #   assert_equal 5, enigma.create_key.length
   # end
 
-  def test_create_key_hash
-    enigma = Enigma.new
-    expected = {"A"=>[0, 4], "B"=>[4, 8], "C"=>[8, 5], "D"=>[5, 3]}
-
-    assert_equal expected, enigma.create_key_hash("04853")
-  end
+  # def test_create_key_hash
+  #   enigma = Enigma.new
+  #   expected = {"A"=>[0, 4], "B"=>[4, 8], "C"=>[8, 5], "D"=>[5, 3]}
+  #
+  #   assert_equal expected, enigma.create_key_hash("04853")
+  # end
 
   def test_get_current_date
     enigma = Enigma.new

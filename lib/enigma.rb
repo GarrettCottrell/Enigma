@@ -18,7 +18,7 @@ class Enigma
   # string_integer.to_s.rjust(5, "0")
   # end
 
-###### create_key_hash is hard-coded, try to go back and refactor after ######
+###### create_key_hash takes the key and turns it into a hash ######
 
   # def create_key_hash(key)
   # split_key = key.split("").map {|chr| chr.to_i}
@@ -52,28 +52,28 @@ class Enigma
 
   def a_shift(key, date)
     alphabet_array = shift.create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
+    shift_hash = shift.create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
     a_shift = shift_hash["A"]
   end
 
   def b_shift(key, date)
     alphabet_array = shift.create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
+    shift_hash = shift.create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
     b_shift = shift_hash["B"]
   end
 
   def c_shift(key, date)
     alphabet_array = shift.create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
+    shift_hash = shift.create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
     c_shift = shift_hash["C"]
   end
 
   def d_shift(key, date)
     alphabet_array = shift.create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
+    shift_hash = shift.create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
     d_shift = shift_hash["D"]
   end

@@ -16,6 +16,8 @@ class Shift
   string_integer.to_s.rjust(5, "0")
   end
 
+  ###### create_key_hash takes the key and turns it into a hash ######
+
   def create_key_hash(key)
   split_key = key.split("").map {|chr| chr.to_i}
   letters = ["A", "B", "C", "D"]

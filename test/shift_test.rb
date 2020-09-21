@@ -22,4 +22,11 @@ class ShiftTest <Minitest::Test
 
     assert_equal 5, shift.create_key.length
   end
+
+  def test_create_key_hash
+    shift = Shift.new
+    expected = {"A"=>[0, 4], "B"=>[4, 8], "C"=>[8, 5], "D"=>[5, 3]}
+
+    assert_equal expected, shift.create_key_hash("04853")
+  end
 end
