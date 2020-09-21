@@ -6,34 +6,6 @@ class Enigma
   def initialize
   end
 
-  def a_shift(key, date)
-    alphabet_array = create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
-    ((value1.join.to_i) + value2)}
-    a_shift = shift_hash["A"]
-  end
-
-  def b_shift(key, date)
-    alphabet_array = create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
-    ((value1.join.to_i) + value2)}
-    b_shift = shift_hash["B"]
-  end
-
-  def c_shift(key, date)
-    alphabet_array = create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
-    ((value1.join.to_i) + value2)}
-    c_shift = shift_hash["C"]
-  end
-
-  def d_shift(key, date)
-    alphabet_array = create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
-    ((value1.join.to_i) + value2)}
-    d_shift = shift_hash["D"]
-  end
-
   ###### message_as_array creates an array out of the messsage ######
 
   def message_as_array(message)
