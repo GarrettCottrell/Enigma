@@ -10,7 +10,7 @@ message = handle.read
 decrypt_hash = eval(message)
 
 
-decrypted_message = decipher.decode_message(decrypt_hash[:encryption], decrypt_hash[:key], decrypt_hash[:date])
+decrypted_message = enigma.decrypt(decrypt_hash[:encryption], decrypt_hash[:key], decrypt_hash[:date])
 
 handle.close
 
