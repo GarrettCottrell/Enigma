@@ -18,7 +18,6 @@ module Shiftable
 
   def create_key_hash(key)
   split_key = key.split("").map {|chr| chr.to_i}
-  letters = ["A", "B", "C", "D"]
   key_hash = {}
   key_hash["A"] = split_key[0..1]
   key_hash["B"] = split_key[1..2]
@@ -43,31 +42,27 @@ module Shiftable
   offset_hash
   end
 
-  def a_shift(key, date)
-    alphabet_array = create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
+  def a_shift(key_value, date)
+    shift_hash = create_key_hash(key_value).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
-    a_shift = shift_hash["A"]
+    shift_hash["A"]
   end
 
-  def b_shift(key, date)
-    alphabet_array = create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
+  def b_shift(key_value, date)
+    shift_hash = create_key_hash(key_value).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
-    b_shift = shift_hash["B"]
+    shift_hash["B"]
   end
 
-  def c_shift(key, date)
-    alphabet_array = create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
+  def c_shift(key_value, date)
+    shift_hash = create_key_hash(key_value).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
-    c_shift = shift_hash["C"]
+    shift_hash["C"]
   end
 
-  def d_shift(key, date)
-    alphabet_array = create_character_set
-    shift_hash = create_key_hash(key).merge!(create_offset_hash(date)) {|key, value1, value2|
+  def d_shift(key_value, date)
+    shift_hash = create_key_hash(key_value).merge!(create_offset_hash(date)) {|key, value1, value2|
     ((value1.join.to_i) + value2)}
-    d_shift = shift_hash["D"]
+    shift_hash["D"]
   end
 end
