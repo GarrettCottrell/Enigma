@@ -71,4 +71,32 @@ class CipherTest <Minitest::Test
 
     assert_equal expected, cipher.create_offset_hash(cipher.get_current_date)
   end
+
+  def test_counter_1_shift
+    cipher = Cipher.new
+    cipher.counter_1_shift("g", "04853", "092120")
+
+    assert_equal ["o"], cipher.encrypted_text
+  end
+
+  def test_counter_2_shift
+    cipher = Cipher.new
+    cipher.counter_2_shift("a", "04853", "092120")
+
+    assert_equal ["z"], cipher.encrypted_text
+  end
+
+  def test_counter_3_shift
+    cipher = Cipher.new
+    cipher.counter_3_shift("r", "04853", "092120")
+
+    assert_equal ["v"], cipher.encrypted_text
+  end
+
+  def test_counter_4_shift
+    cipher = Cipher.new
+    cipher.counter_4_shift("r", "04853", "092120")
+
+    assert_equal ["q"], cipher.encrypted_text
+  end
 end
