@@ -12,9 +12,9 @@ class CipherTest <Minitest::Test
   def test_code_message
     cipher = Cipher.new
 
-    expected = ["o", "z", "v", "q", "m", "r", "x", "z", "k", "m", "x", "s", "z", "c", "p", "k"]
+    expected = ["o", "z", "v", "q", "m", "r", "x", "z", "k", "m", "x", "s", "z", "c", "p", "k", "!"]
 
-    assert_equal expected, cipher.code_message("garrett cottrell", "04853", "092120")
+    assert_equal expected, cipher.code_message("garrett cottrell!", "04853", "092120")
   end
 
   def test_create_key
