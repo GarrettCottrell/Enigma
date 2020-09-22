@@ -73,4 +73,40 @@ class DecipherTest <Minitest::Test
 
     assert_equal expected, decipher.decode_message("ozvqmrxzkmxszcpk!", "04853", "092120")
   end
+
+  def test_counter_1_decode_shift
+    decipher = Decipher.new
+    cipher = Cipher.new
+    cipher.code_message("g", "04853", "092120")
+    decipher.counter_1_decode_shift("o", "04853", "092120")
+
+    assert_equal ["g"], decipher.decrypted_text
+  end
+
+  def test_counter_2_decode_shift
+    decipher = Decipher.new
+    cipher = Cipher.new
+    cipher.code_message("a", "04853", "092120")
+    decipher.counter_2_decode_shift("z", "04853", "092120")
+
+    assert_equal ["a"], decipher.decrypted_text
+  end
+
+  def test_counter_3_decode_shift
+    decipher = Decipher.new
+    cipher = Cipher.new
+    cipher.code_message("r", "04853", "092120")
+    decipher.counter_3_decode_shift("v", "04853", "092120")
+
+    assert_equal ["r"], decipher.decrypted_text
+  end
+
+  def test_counter_4_decode_shift
+    decipher = Decipher.new
+    cipher = Cipher.new
+    cipher.code_message("r", "04853", "092120")
+    decipher.counter_4_decode_shift("q", "04853", "092120")
+
+    assert_equal ["r"], decipher.decrypted_text
+  end
 end
