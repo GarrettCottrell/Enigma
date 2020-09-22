@@ -25,13 +25,13 @@ class CipherTest <Minitest::Test
   def test_get_current_date
     cipher = Cipher.new
 
-    assert_equal "092120", cipher.get_current_date
+    assert_equal "092220", cipher.get_current_date
   end
 
   def test_a_shift
     cipher = Cipher.new
 
-    assert_equal 8, cipher.a_shift("04853", cipher.get_current_date)
+    assert_equal 12, cipher.a_shift("04853", cipher.get_current_date)
   end
 
   def test_b_shift
@@ -67,7 +67,7 @@ class CipherTest <Minitest::Test
 
   def test_create_offset_hash
     cipher = Cipher.new
-    expected = {"A"=>4, "B"=>4, "C"=>0, "D"=>0}
+    expected = {"A"=>8, "B"=>4, "C"=>0, "D"=>0}
 
     assert_equal expected, cipher.create_offset_hash(cipher.get_current_date)
   end

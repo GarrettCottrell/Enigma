@@ -18,13 +18,13 @@ class DecipherTest <Minitest::Test
   def test_get_current_date
     decipher = Decipher.new
 
-    assert_equal "092120", decipher.get_current_date
+    assert_equal "092220", decipher.get_current_date
   end
 
   def test_a_shift
     decipher = Decipher.new
 
-    assert_equal 8, decipher.a_shift("04853", decipher.get_current_date)
+    assert_equal 12, decipher.a_shift("04853", decipher.get_current_date)
   end
 
   def test_b_shift
@@ -60,7 +60,7 @@ class DecipherTest <Minitest::Test
 
   def test_create_offset_hash
     decipher = Decipher.new
-    expected = {"A"=>4, "B"=>4, "C"=>0, "D"=>0}
+    expected = {"A"=>8, "B"=>4, "C"=>0, "D"=>0}
 
     assert_equal expected, decipher.create_offset_hash(decipher.get_current_date)
   end
